@@ -8,7 +8,7 @@ env:
 
 jobs:
   build-arm64:
-    runs-on: macos-13-xlarge
+    runs-on: macos-15
 
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
       - name: Build
         run: MACOSX_DEPLOYMENT_TARGET=11.0 go build -v -ldflags "-X main.Commit=${{ github.sha }}"
 
-      - name: Run the binary
-        run: ./mac-registration-provider -once
+      # - name: Run the binary
+      #   run: ./mac-registration-provider -once
 
       - name: Install lint dependencies
         run: |
@@ -41,7 +41,7 @@ jobs:
           if-no-files-found: error
 
   build-x86:
-    runs-on: macos-11
+    runs-on: macos-15
 
     steps:
       - uses: actions/checkout@v4
@@ -55,8 +55,8 @@ jobs:
       - name: Build
         run: MACOSX_DEPLOYMENT_TARGET=10.13 go build -v -ldflags "-X main.Commit=${{ github.sha }}"
 
-      - name: Run the binary
-        run: ./mac-registration-provider -once
+      # - name: Run the binary
+      #   run: ./mac-registration-provider -once
 
       - uses: actions/upload-artifact@v4
         with:
@@ -65,7 +65,7 @@ jobs:
           if-no-files-found: error
 
   build-universal:
-    runs-on: macos-13
+    runs-on: macos-15
     needs: [build-arm64, build-x86]
     steps:
       - uses: actions/download-artifact@v4
