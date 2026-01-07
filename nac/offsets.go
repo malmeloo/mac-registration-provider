@@ -257,7 +257,7 @@ var offsets_14_7 = imdOffsetTuple {
                 NACInitAddress: 0x559eb0,
                 NACKeyEstablishmentAddress: 0x539ef0,
                 NACSignAddress: 0x54d1e0,
-        }
+        },
 }
 
 // offsets is a map from sha256 hash of identityservicesd to the function pointer offsets in that binary.
